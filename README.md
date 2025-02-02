@@ -3,6 +3,7 @@
 **Công cụ sinh dữ liệu giả và insert hàng loạt vào database**  
 [![Java](https://img.shields.io/badge/Java-17%2B-blue)](https://www.oracle.com/java/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-green)](LICENSE)
+[![Contributors](https://img.shields.io/github/contributors/ZeroX-Labs/dummy-insert)](https://github.com/ZeroX-Labs/dummy-insert/graphs/contributors)
 
 ## Mục đích
 Công cụ này giúp tự động sinh dữ liệu giả (dummy data) và insert vào database với tốc độ cao, phục vụ cho:
@@ -29,9 +30,3 @@ git clone https://github.com/your-username/dummy-insert.git
 cd dummy-insert
 mvn clean package
 ```
-
-## Contributors
-Cảm ơn những người đã đóng góp vào dự án này! 🙌
-
-[![Contributors](https://img.shields.io/github/contributors/ZeroX-Labs/dummy-insert)](https://github.com/ZeroX-Labs/dummy-insert/graphs/contributors)
-
