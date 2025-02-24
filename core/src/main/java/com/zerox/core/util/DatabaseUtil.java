@@ -9,8 +9,9 @@ public class DatabaseUtil {
     private static Connection connectDataSource(String url, String host, long port, String database, String username, String password, String driver) {
         if(driver.equals("mysql")) {
             try {
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 return DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -40,14 +41,16 @@ public class DatabaseUtil {
         String host = scanner.nextLine();
         System.out.println("Enter the database port: ");
         long port = scanner.nextLong();
-        System.out.println("Enter the database name: ");
-        String database = scanner.nextLine();
+        scanner.nextLine();
         System.out.println("Enter the database username: ");
         String username = scanner.nextLine();
         System.out.println("Enter the database password: ");
         String password = scanner.nextLine();
         System.out.println("Enter the database driver: ");
         String driver = scanner.nextLine();
+        System.out.println("Enter the database name: ");
+        String database = scanner.nextLine();
         Connection connection = connectDataSource(url, host, port, database, username, password, driver);
+        System.out.println(connection);
     }
 }
