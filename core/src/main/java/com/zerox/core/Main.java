@@ -1,7 +1,10 @@
 package com.zerox.core;
 
-import com.zerox.core.util.Connect;
-import com.zerox.core.util.DatabaseUtil;
+import com.zerox.core.enums.DatabaseType;
+import com.zerox.core.util.DataSource;
+import com.zerox.core.util.ScanTable;
+import com.zerox.core.util.type.Mysql;
+import com.zerox.core.util.type.Postgresql;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -10,8 +13,8 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         Scanner scanner = new Scanner(System.in);
-        DummyInsert dummyInsert = new DummyInsert();
-        Connect connect = new Connect();
+        ScanTable scanTable;
+        DataSource connect = new DataSource();
         System.out.println("Enter the database host: ");
         connect.host = scanner.nextLine();
         System.out.println("Enter the database port: ");
@@ -22,12 +25,21 @@ public class Main {
         System.out.println("Enter the database password: ");
         connect.password = scanner.nextLine();
         System.out.println("Enter the database driver: ");
-        connect.driver = scanner.nextLine();
+        connect.databaseType = scanner.nextLine();
         System.out.println("Enter the database name: ");
-        connect.database = scanner.nextLine();
+        connect.database = DatabaseType.valueOf(scanner.nextLine());
         System.out.println("Enter the table name: ");
         String table = scanner.nextLine();
-        dummyInsert.scanTable(connect, table);
+        switch (connect.databaseType) {
+            case "MYSQL" -> scanTable = new ScanTable(new Mysql());
+            case "POSTGRESQL" -> scanTable = new ScanTable(new Postgresql());
+            default -> {
+                System.out.println("Invalid database type!");
+                return;
+            }
+        }
+
+        scanTable.scanTable(connect, table);
 
     }
 }
