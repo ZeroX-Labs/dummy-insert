@@ -25,14 +25,14 @@ public class Main {
         System.out.println("Enter the database password: ");
         connect.password = scanner.nextLine();
         System.out.println("Enter the database driver: ");
-        connect.databaseType = scanner.nextLine();
+        connect.databaseType = DatabaseType.valueOf(scanner.nextLine());
         System.out.println("Enter the database name: ");
-        connect.database = DatabaseType.valueOf(scanner.nextLine());
+        connect.database = scanner.nextLine();
         System.out.println("Enter the table name: ");
         String table = scanner.nextLine();
         switch (connect.databaseType) {
-            case "MYSQL" -> scanTable = new ScanTable(new Mysql());
-            case "POSTGRESQL" -> scanTable = new ScanTable(new Postgresql());
+            case DatabaseType.MYSQL -> scanTable = new ScanTable(new Mysql());
+            case DatabaseType.POSTGRESQL -> scanTable = new ScanTable(new Postgresql());
             default -> {
                 System.out.println("Invalid database type!");
                 return;
